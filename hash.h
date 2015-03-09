@@ -7,6 +7,7 @@
 #pragma once
 
 #include <string>
+#define HASH_LIBRARY_VERSION 5
 
 /// abstract base class
 class Hash
