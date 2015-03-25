@@ -1,13 +1,13 @@
 // //////////////////////////////////////////////////////////
 // hash.h
-// Copyright (c) 2014 Stephan Brumme. All rights reserved.
+// Copyright (c) 2014,2015 Stephan Brumme. All rights reserved.
 // see http://create.stephan-brumme.com/disclaimer.html
 //
 
 #pragma once
 
 #include <string>
-#define HASH_LIBRARY_VERSION 5
+#define HASH_LIBRARY_VERSION 7
 
 /// abstract base class
 class Hash
@@ -21,7 +21,7 @@ public:
   /// add arbitrary number of bytes
   virtual void add(const void* data, size_t numBytes) = 0;
 
-  /// return latest hash as 16 hex characters
+  /// return latest hash as hex characters
   virtual std::string getHash() = 0;
 
   /// restart

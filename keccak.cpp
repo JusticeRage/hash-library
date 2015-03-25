@@ -1,6 +1,6 @@
 // //////////////////////////////////////////////////////////
 // keccak.cpp
-// Copyright (c) 2014 Stephan Brumme. All rights reserved.
+// Copyright (c) 2014,2015 Stephan Brumme. All rights reserved.
 // see http://create.stephan-brumme.com/disclaimer.html
 //
 
@@ -222,11 +222,11 @@ void Keccak::processBuffer()
   // add a "1" byte
   m_buffer[offset++] = 1;
   // fill with zeros
-  while (offset < blockSize - 1)
+  while (offset < blockSize)
     m_buffer[offset++] = 0;
 
   // and add a single set bit
-  m_buffer[blockSize - 1] = 0x80;
+  m_buffer[blockSize - 1] |= 0x80;
 
   processBlock(m_buffer);
 }
@@ -253,6 +253,19 @@ std::string Keccak::getHash()
       result += dec2hex[oneByte >> 4];
       result += dec2hex[oneByte & 15];
     }
+
+  // Keccak224's last entry in m_hash provides only 32 bits instead of 64 bits
+  unsigned int remainder = m_bits - hashLength * 64;
+  unsigned int processed = 0;
+  while (processed < remainder)
+  {
+    // convert a byte to hex
+    unsigned char oneByte = (unsigned char) (m_hash[hashLength] >> processed);
+    result += dec2hex[oneByte >> 4];
+    result += dec2hex[oneByte & 15];
+
+    processed += 8;
+  }
 
   return result;
 }
