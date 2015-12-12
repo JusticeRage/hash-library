@@ -6,6 +6,10 @@
 
 #pragma once
 
+#if (defined(__unix__) || defined(unix)) && !defined(USG)
+#include <sys/param.h>
+#endif
+
 #include <string>
 #define HASH_LIBRARY_VERSION 7
 

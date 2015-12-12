@@ -7,7 +7,11 @@
 #include "md5.h"
 
 #ifndef _MSC_VER
-#include <endian.h>
+# ifdef BSD
+#  include <sys/endian.h>
+# else
+#  include <endian.h>
+# endif
 #endif
 
 
