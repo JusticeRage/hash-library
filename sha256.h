@@ -42,22 +42,23 @@ public:
 
   /// same as reset()
   SHA256();
+  virtual ~SHA256() {}
 
   /// compute SHA256 of a memory block
-  std::string operator()(const void* data, size_t numBytes);
+  std::string operator()(const void* data, size_t numBytes) override;
   /// compute SHA256 of a string, excluding final zero
-  std::string operator()(const std::string& text);
+  std::string operator()(const std::string& text) override;
 
   /// add arbitrary number of bytes
-  void add(const void* data, size_t numBytes);
+  void add(const void* data, size_t numBytes) override;
 
   /// return latest hash as 64 hex characters
-  std::string getHash();
+  std::string getHash() override;
   /// return latest hash as bytes
   void        getHash(unsigned char buffer[HashBytes]);
 
   /// restart
-  void reset();
+  void reset() override;
 
 private:
   /// process 64 bytes

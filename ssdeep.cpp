@@ -24,15 +24,15 @@ pString hash_file(const std::string& filename)
 	boost::shared_array<char> res = boost::shared_array<char>(new char[FUZZY_MAX_RESULT]);
 	FILE* f = fopen(filename.c_str(), "rb");
 
-	if (f == NULL || fuzzy_hash_file(f, res.get()))
+	if (f == nullptr || fuzzy_hash_file(f, res.get()))
 	{
-		if (f != NULL) {
+		if (f != nullptr) {
 			fclose(f);
 		}
 		return pString();
 	}
 	fclose(f);
-	return pString(new std::string(res.get()));
+	return boost::make_shared<std::string>(res.get());
 }
 
 pString hash_buffer(const std::vector<boost::uint8_t>& bytes)
@@ -41,7 +41,7 @@ pString hash_buffer(const std::vector<boost::uint8_t>& bytes)
 	if (fuzzy_hash_buf(&bytes[0], bytes.size(), res.get())) {
 		return pString();
 	}
-	return pString(new std::string(res.get()));
+	return boost::make_shared<std::string>(res.get());
 }
 
 }

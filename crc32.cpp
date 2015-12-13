@@ -408,7 +408,7 @@ std::string CRC32::getHash()
 
 
 /// return latest hash as bytes
-void CRC32::getHash(unsigned char buffer[CRC32::HashBytes])
+void CRC32::getHash(unsigned char buffer[CRC32::HashBytes]) const
 {
   buffer[0] = (m_hash >> 24) & 0xFF;
   buffer[1] = (m_hash >> 16) & 0xFF;

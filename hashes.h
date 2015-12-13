@@ -22,7 +22,7 @@
 #include <vector>
 #include <stdio.h>
 
-#include <boost/shared_ptr.hpp>
+#include <boost/make_shared.hpp>
 #include <boost/shared_array.hpp>
 #include <boost/assign.hpp>
 #include <boost/cstdint.hpp>

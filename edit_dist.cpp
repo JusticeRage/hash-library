@@ -93,12 +93,12 @@ edit_distn(const char *from, int from_len, const char *to, int to_len)
 
 /* Handle trivial cases when one string is empty */
 
-    if (from == NULL || !from_len)
-	if (to == NULL || !to_len)
+    if (from == nullptr || !from_len)
+	if (to == nullptr || !to_len)
 	    return 0;
 	else
 	    return to_len * insert_cost;
-    else if (to == NULL || !to_len)
+    else if (to == nullptr || !to_len)
 	return from_len * delete_cost;
 
 /* Initialize registers */

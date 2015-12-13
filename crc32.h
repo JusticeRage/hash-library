@@ -48,20 +48,20 @@ public:
   CRC32();
 
   /// compute CRC32 of a memory block
-  std::string operator()(const void* data, size_t numBytes);
+  std::string operator()(const void* data, size_t numBytes) override;
   /// compute CRC32 of a string, excluding final zero
-  std::string operator()(const std::string& text);
+  std::string operator()(const std::string& text) override;
 
   /// add arbitrary number of bytes
-  void add(const void* data, size_t numBytes);
+  void add(const void* data, size_t numBytes) override;
 
   /// return latest hash as 8 hex characters
-  std::string getHash();
+  std::string getHash() override;
   /// return latest hash as bytes
-  void        getHash(unsigned char buffer[HashBytes]);
+  void        getHash(unsigned char buffer[HashBytes]) const;
 
   /// restart
-  void reset();
+  void reset() override;
 
 private:
   /// hash

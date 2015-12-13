@@ -21,7 +21,7 @@
 #include <iostream>
 #include <vector>
 #include <boost/shared_array.hpp>
-#include <boost/shared_ptr.hpp>
+#include <boost/make_shared.hpp>
 #include <boost/cstdint.hpp>
 #include <boost/system/api_config.hpp>
 

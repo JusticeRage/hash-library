@@ -19,10 +19,11 @@
 
 namespace hash {
 
-const std::vector<pHash> ALL_DIGESTS = boost::assign::list_of	(pHash(new MD5))
-																(pHash(new SHA1))
-																(pHash(new SHA256))
-																(pHash(new Keccak));
+	const std::vector<pHash> ALL_DIGESTS = boost::assign::list_of
+		(boost::static_pointer_cast<Hash>(boost::make_shared<MD5>()))
+		(boost::static_pointer_cast<Hash>(boost::make_shared<SHA1>()))
+		(boost::static_pointer_cast<Hash>(boost::make_shared<SHA256>()))
+		(boost::static_pointer_cast<Hash>(boost::make_shared<Keccak>()));
 
 pString hash_bytes(Hash& digest, const std::vector<boost::uint8_t>& bytes)
 {
@@ -30,15 +31,15 @@ pString hash_bytes(Hash& digest, const std::vector<boost::uint8_t>& bytes)
 	if (bytes.size() > 0) {
 		digest.add(&bytes[0], bytes.size());
 	}
-	return pString(new std::string(digest.getHash()));
+	return boost::make_shared<std::string>(digest.getHash());
 }
 
 // ----------------------------------------------------------------------------
 
 const_shared_strings hash_bytes(const std::vector<pHash>& digests, const std::vector<boost::uint8_t>& bytes)
 {
-	shared_strings res = shared_strings(new shared_strings::element_type);
-	for (std::vector<pHash>::const_iterator it = digests.begin() ; it != digests.end() ; ++it)
+	shared_strings res = boost::make_shared<shared_strings::element_type>();
+	for (auto it = digests.begin() ; it != digests.end() ; ++it)
 	{
 		(*it)->reset();
 		if (bytes.size() > 0) {
@@ -55,10 +56,10 @@ pString hash_file(Hash& digest, const std::string& filename)
 {
 	digest.reset();
 	FILE* f = fopen(filename.c_str(), "rb");
-	if (f == NULL) {
+	if (f == nullptr) {
 		return pString();
 	}
-	boost::shared_array<boost::uint8_t> buffer = boost::shared_array<boost::uint8_t>(new boost::uint8_t[1024]);
+	auto buffer = boost::shared_array<boost::uint8_t>(new boost::uint8_t[1024]);
 	int read = 0;
 	while (1024 == (read = fread(buffer.get(), 1, 1024, f))) {
 		digest.add(buffer.get(), read);
@@ -70,33 +71,33 @@ pString hash_file(Hash& digest, const std::string& filename)
 	}
 
 	fclose(f);
-	return pString(new std::string(digest.getHash()));
+	return boost::make_shared<std::string>(digest.getHash());
 }
 
 // ----------------------------------------------------------------------------
 
 const_shared_strings hash_file(const std::vector<pHash>& digests, const std::string& filename)
 {
-	shared_strings res = shared_strings(new shared_strings::element_type);
+	shared_strings res = boost::make_shared<shared_strings::element_type>();
 
 	for (std::vector<pHash>::const_iterator it = digests.begin() ; it != digests.end() ; ++it) {
 		(*it)->reset();
 	}
 
 	FILE* f = fopen(filename.c_str(), "rb");
-	if (f == NULL) {
+	if (f == nullptr) {
 		return res;
 	}
-	boost::shared_array<boost::uint8_t> buffer = boost::shared_array<boost::uint8_t>(new boost::uint8_t[1024]);
+	auto buffer = boost::shared_array<boost::uint8_t>(new boost::uint8_t[1024]);
 	int read = 0;
 	while (1024 == (read = fread(buffer.get(), 1, 1024, f)))
 	{
-		for (std::vector<pHash>::const_iterator it = digests.begin() ; it != digests.end() ; ++it) {
+		for (auto it = digests.begin() ; it != digests.end() ; ++it) {
 			(*it)->add(buffer.get(), read);
 		}
 	}
 
-	for (std::vector<pHash>::const_iterator it = digests.begin() ; it != digests.end() ; ++it)
+	for (auto it = digests.begin() ; it != digests.end() ; ++it)
 	{
 		// Append the bytes of the last read operation
 		if (read != 0) {
