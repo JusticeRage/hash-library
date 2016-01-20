@@ -14,11 +14,10 @@
 # endif
 #endif
 
-
 /// same as reset()
 MD5::MD5()
 {
-  reset();
+  MD5::reset();
 }
 
 

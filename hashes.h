@@ -15,9 +15,7 @@
     along with Manalyze.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef _HASHES_H_
-#define _HASHES_H_
-
+#pragma once
 #include <string>
 #include <vector>
 #include <stdio.h>
@@ -99,15 +97,13 @@ HASHLIB_API const_shared_strings hash_file(const std::vector<pHash>& digests, co
  */
 HASHLIB_API const_shared_strings hash_bytes(const std::vector<pHash>& digests, const std::vector<boost::uint8_t>& bytes);
 
-// Convenience vector containing all available digests.
+// Helper vector containing all available digests.
 extern HASHLIB_API const std::vector<pHash> ALL_DIGESTS;
 
-// Convenience #defines to access ALL_DIGESTS ciphers in a readable manner.
+// Helper #defines to access ALL_DIGESTS ciphers in a readable manner.
 #define ALL_DIGESTS_MD5		0
 #define ALL_DIGESTS_SHA1	1
 #define ALL_DIGESTS_SHA256	2
 #define ALL_DIGESTS_SHA3	3
 
 } // !namespace hash
-
-#endif // !_HASHES_H_

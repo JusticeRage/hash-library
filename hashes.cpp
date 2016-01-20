@@ -80,14 +80,15 @@ const_shared_strings hash_file(const std::vector<pHash>& digests, const std::str
 {
 	shared_strings res = boost::make_shared<shared_strings::element_type>();
 
+	FILE* f = fopen(filename.c_str(), "rb");
+	if (f == nullptr) {
+		return boost::shared_ptr<shared_strings::element_type>();
+	}
+
 	for (std::vector<pHash>::const_iterator it = digests.begin() ; it != digests.end() ; ++it) {
 		(*it)->reset();
 	}
 
-	FILE* f = fopen(filename.c_str(), "rb");
-	if (f == nullptr) {
-		return res;
-	}
 	auto buffer = boost::shared_array<boost::uint8_t>(new boost::uint8_t[1024]);
 	int read = 0;
 	while (1024 == (read = fread(buffer.get(), 1, 1024, f)))

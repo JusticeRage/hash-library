@@ -37,6 +37,10 @@ pString hash_file(const std::string& filename)
 
 pString hash_buffer(const std::vector<boost::uint8_t>& bytes)
 {
+	if (bytes.size() == 0) {
+		return boost::shared_ptr<std::string>();
+	}
+
 	boost::shared_array<char> res = boost::shared_array<char>(new char[FUZZY_MAX_RESULT]);
 	if (fuzzy_hash_buf(&bytes[0], bytes.size(), res.get())) {
 		return pString();

@@ -15,8 +15,7 @@
     along with Manalyze.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef _SSDEEP_H_
-#define _SSDEEP_H_
+#pragma once
 
 #include <iostream>
 #include <vector>
@@ -61,5 +60,3 @@ HASHLIB_API pString hash_file(const std::string& filename);
 HASHLIB_API pString hash_buffer(const std::vector<boost::uint8_t>& bytes);
 
 }
-
-#endif // !_SSDEEP_H_
