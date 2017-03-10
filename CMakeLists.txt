@@ -13,3 +13,15 @@ else()
         add_definitions(-fPIC)
     endif()
 endif()
+
+# make install command for linux machines:
+if ("${CMAKE_SYSTEM}" MATCHES "Linux")
+	# Copy binaries
+	install(TARGETS hash-library
+			RUNTIME DESTINATION /usr/local/bin
+			LIBRARY DESTINATION /usr/local/lib
+			ARCHIVE DESTINATION /usr/local/lib/static)
+
+    # Run ldconfig.
+	execute_process(COMMAND ldconfig)
+endif()
