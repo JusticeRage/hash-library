@@ -19,7 +19,7 @@
 
 namespace hash {
 
-	const std::vector<pHash> ALL_DIGESTS = boost::assign::list_of
+const std::vector<pHash> ALL_DIGESTS = boost::assign::list_of
 		(boost::static_pointer_cast<Hash>(boost::make_shared<MD5>()))
 		(boost::static_pointer_cast<Hash>(boost::make_shared<SHA1>()))
 		(boost::static_pointer_cast<Hash>(boost::make_shared<SHA256>()))
