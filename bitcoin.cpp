@@ -29,8 +29,10 @@ bool test_btc_address(const std::string& address)
 	for (char c : address) {
 		big_int = big_int * 58 + base58.find_first_of(c);
 	}
-	for (int i = 24; i >= 0; --i) {
-		data[24 - i] = (big_int.convert_to<boost::uint8_t>() >> i * 8) & 0xFF; // Safe because of the & 0xFF.
+	for (int i = 24; i >= 0; --i)
+	{
+		// Safe because of the & 0xFF.
+		data[24 - i] = boost::multiprecision::cpp_int((big_int >> i * 8) & 0xFF).convert_to<boost::uint8_t>();
 	}
 
 	// Compute the checksum.
