@@ -1,7 +1,7 @@
 cmake_minimum_required (VERSION 2.6)
 project (hash-library)
 
-add_library(hash-library SHARED crc32.cpp keccak.cpp md5.cpp sha1.cpp sha256.cpp fuzzy.cpp edit_dist.cpp ssdeep.cpp hashes.cpp bitcoin.cpp)
+add_library(hash-library SHARED crc32.cpp keccak.cpp md5.cpp sha1.cpp sha256.cpp sha3.cpp fuzzy.cpp edit_dist.cpp ssdeep.cpp hashes.cpp bitcoin.cpp)
 if (WIN32)
             set (CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -MTd")
             set (CMAKE_CXX_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -MTd")
@@ -13,6 +13,12 @@ else()
         add_definitions(-fPIC)
     endif()
 endif()
+
+if (Tests MATCHES [Oo][Nn])
+    add_executable(hash-library-test tests/tests.cpp)
+    target_link_libraries(hash-library-test hash-library)
+endif()
+
 
 # make install command for linux machines:
 if ("${CMAKE_SYSTEM}" MATCHES "Linux")

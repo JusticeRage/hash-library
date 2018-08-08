@@ -30,7 +30,7 @@
 #include "hash-library/md5.h"
 #include "hash-library/sha1.h"
 #include "hash-library/sha256.h"
-#include "hash-library/keccak.h"
+#include "hash-library/sha3.h"
 
 #if defined BOOST_WINDOWS_API && !defined HASHLIB_API
 	#ifdef HASHLIB_EXPORT
@@ -96,6 +96,13 @@ HASHLIB_API const_shared_strings hash_file(const std::vector<pHash>& digests, co
  *			If an error occurs for any digest, the return value's size is set to 0.
  */
 HASHLIB_API const_shared_strings hash_bytes(const std::vector<pHash>& digests, const std::vector<boost::uint8_t>& bytes);
+
+/**
+ * Creates a Hash object based on an algorithm's OID
+ * @param oid The OID of the hashing algorithm to instantiate.
+ * @return An instance of the required digest, or an invalid pointer if it could not be created.
+ */
+HASHLIB_API pHash create_hash(const std::string& oid);
 
 // Helper vector containing all available digests.
 extern HASHLIB_API const std::vector<pHash> ALL_DIGESTS;
