@@ -276,14 +276,7 @@ std::string SHA1::getHash()
   // convert to hex string
   std::string result;
   result.reserve(2 * HashBytes);
-  for (int i = 0; i < HashBytes; i++)
-  {
-    static const char dec2hex[16+1] = "0123456789abcdef";
-    result += dec2hex[(rawHash[i] >> 4) & 15];
-    result += dec2hex[ rawHash[i]       & 15];
-  }
-
-  return result;
+  return hexlify(rawHash, HashBytes);
 }
 
 
@@ -309,22 +302,4 @@ void SHA1::getHash(unsigned char buffer[SHA1::HashBytes])
     // restore old hash
     m_hash[i] = oldHash[i];
   }
-}
-
-
-/// compute SHA1 of a memory block
-std::string SHA1::operator()(const void* data, size_t numBytes)
-{
-  reset();
-  add(data, numBytes);
-  return getHash();
-}
-
-
-/// compute SHA1 of a string, excluding final zero
-std::string SHA1::operator()(const std::string& text)
-{
-  reset();
-  add(text.c_str(), text.size());
-  return getHash();
 }

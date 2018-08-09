@@ -17,10 +17,13 @@
 class Hash
 {
 public:
+  virtual ~Hash() = default;
+
   /// compute hash of a memory block
-  virtual std::string operator()(const void* data, size_t numBytes) = 0;
+  virtual std::string operator()(const void* data, size_t numBytes);
+
   /// compute hash of a string, excluding final zero
-  virtual std::string operator()(const std::string& text) = 0;
+  virtual std::string operator()(const std::string& text);
 
   /// add arbitrary number of bytes
   virtual void add(const void* data, size_t numBytes) = 0;

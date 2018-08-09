@@ -6,8 +6,9 @@
 
 #pragma once
 
-#include "hash.h"
 #include <string>
+#include "hash.h"
+#include "utils.h"
 
 // define fixed size integer types
 #ifdef _MSC_VER
@@ -43,11 +44,6 @@ public:
   /// same as reset()
   SHA1();
   virtual ~SHA1() {}
-
-  /// compute SHA1 of a memory block
-  std::string operator()(const void* data, size_t numBytes) override;
-  /// compute SHA1 of a string, excluding final zero
-  std::string operator()(const std::string& text) override;
 
   /// add arbitrary number of bytes
   void add(const void* data, size_t numBytes) override;

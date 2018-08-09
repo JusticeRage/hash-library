@@ -23,6 +23,7 @@ const std::vector<pHash> ALL_DIGESTS = boost::assign::list_of
 		(boost::static_pointer_cast<Hash>(boost::make_shared<MD5>()))
 		(boost::static_pointer_cast<Hash>(boost::make_shared<SHA1>()))
 		(boost::static_pointer_cast<Hash>(boost::make_shared<SHA256>()))
+		(boost::static_pointer_cast<Hash>(boost::make_shared<SHA512>()))
 		(boost::static_pointer_cast<Hash>(boost::make_shared<SHA3>()));
 
 // ----------------------------------------------------------------------------
@@ -50,7 +51,7 @@ pHash create_hash(const std::string& oid)
 		return boost::make_shared<SHA256>();
 	}
 	else if (oid == "2.16.840.1.101.3.4.2.3") {
-		return boost::shared_ptr<Hash>(); // SHA512 is not implemented yet.
+		return boost::make_shared<SHA512>();
 	}
 	else if (oid == "2.16.840.1.101.3.4.2.8") {
 		return boost::make_shared<SHA3>();

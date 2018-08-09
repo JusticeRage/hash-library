@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="hash-library"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="clang"/>
+		<Option virtualFolders="CMake Files\;CMake Files\external\;CMake Files\external\hash-library\;CMake Files\external\yara\;CMake Files\test\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/ivan/code/Manalyze/external/hash-library"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/ivan/code/Manalyze/external/hash-library/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/ivan/code/Manalyze/external/hash-library/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/ivan/code/Manalyze/external/hash-library/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/ivan/code/Manalyze/external/hash-library/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="hash-library">
+				<Option output="/home/ivan/code/Manalyze/bin/libhash-library.so" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/ivan/code/Manalyze/external/hash-library"/>
+				<Option object_output="./"/>
+				<Option type="3"/>
+				<Option compiler="clang"/>
+				<Compiler>
+					<Add option="-DWITH_OPENSSL"/>
+					<Add option="-DWITH_MANACOMMONS"/>
+					<Add directory="/home/ivan/code/Manalyze"/>
+					<Add directory="/home/ivan/code/Manalyze/include"/>
+					<Add directory="/home/ivan/code/Manalyze/external"/>
+					<Add directory="/home/ivan/code/Manalyze/external/yara/include"/>
+					<Add directory="/home/ivan/code/Manalyze/plugins"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/ivan/code/Manalyze/external/hash-library/Makefile&quot;  VERBOSE=1 hash-library"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/ivan/code/Manalyze/external/hash-library/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/ivan/code/Manalyze/external/hash-library/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/ivan/code/Manalyze/external/hash-library/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="hash-library/fast">
+				<Option output="/home/ivan/code/Manalyze/bin/libhash-library.so" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/ivan/code/Manalyze/external/hash-library"/>
+				<Option object_output="./"/>
+				<Option type="3"/>
+				<Option compiler="clang"/>
+				<Compiler>
+					<Add option="-DWITH_OPENSSL"/>
+					<Add option="-DWITH_MANACOMMONS"/>
+					<Add directory="/home/ivan/code/Manalyze"/>
+					<Add directory="/home/ivan/code/Manalyze/include"/>
+					<Add directory="/home/ivan/code/Manalyze/external"/>
+					<Add directory="/home/ivan/code/Manalyze/external/yara/include"/>
+					<Add directory="/home/ivan/code/Manalyze/plugins"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/ivan/code/Manalyze/external/hash-library/Makefile&quot;  VERBOSE=1 hash-library/fast"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/ivan/code/Manalyze/external/hash-library/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/ivan/code/Manalyze/external/hash-library/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/ivan/code/Manalyze/external/hash-library/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="hash-library-test">
+				<Option output="/home/ivan/code/Manalyze/bin/hash-library-test" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/ivan/code/Manalyze/bin"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="clang"/>
+				<Compiler>
+					<Add option="-DWITH_OPENSSL"/>
+					<Add option="-DWITH_MANACOMMONS"/>
+					<Add directory="/home/ivan/code/Manalyze"/>
+					<Add directory="/home/ivan/code/Manalyze/include"/>
+					<Add directory="/home/ivan/code/Manalyze/external"/>
+					<Add directory="/home/ivan/code/Manalyze/external/yara/include"/>
+					<Add directory="/home/ivan/code/Manalyze/plugins"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/ivan/code/Manalyze/external/hash-library/Makefile&quot;  VERBOSE=1 hash-library-test"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/ivan/code/Manalyze/external/hash-library/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/ivan/code/Manalyze/external/hash-library/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/ivan/code/Manalyze/external/hash-library/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="hash-library-test/fast">
+				<Option output="/home/ivan/code/Manalyze/bin/hash-library-test" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/ivan/code/Manalyze/bin"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="clang"/>
+				<Compiler>
+					<Add option="-DWITH_OPENSSL"/>
+					<Add option="-DWITH_MANACOMMONS"/>
+					<Add directory="/home/ivan/code/Manalyze"/>
+					<Add directory="/home/ivan/code/Manalyze/include"/>
+					<Add directory="/home/ivan/code/Manalyze/external"/>
+					<Add directory="/home/ivan/code/Manalyze/external/yara/include"/>
+					<Add directory="/home/ivan/code/Manalyze/plugins"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/ivan/code/Manalyze/external/hash-library/Makefile&quot;  VERBOSE=1 hash-library-test/fast"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/ivan/code/Manalyze/external/hash-library/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/ivan/code/Manalyze/external/hash-library/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/ivan/code/Manalyze/external/hash-library/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/ivan/code/Manalyze/external/hash-library/bitcoin.cpp">
+			<Option target="hash-library"/>
+		</Unit>
+		<Unit filename="/home/ivan/code/Manalyze/external/hash-library/bitcoin.h">
+			<Option target="hash-library"/>
+		</Unit>
+		<Unit filename="/home/ivan/code/Manalyze/external/hash-library/crc32.cpp">
+			<Option target="hash-library"/>
+		</Unit>
+		<Unit filename="/home/ivan/code/Manalyze/external/hash-library/crc32.h">
+			<Option target="hash-library"/>
+		</Unit>
+		<Unit filename="/home/ivan/code/Manalyze/external/hash-library/edit_dist.cpp">
+			<Option target="hash-library"/>
+		</Unit>
+		<Unit filename="/home/ivan/code/Manalyze/external/hash-library/fuzzy.cpp">
+			<Option target="hash-library"/>
+		</Unit>
+		<Unit filename="/home/ivan/code/Manalyze/external/hash-library/fuzzy.h">
+			<Option target="hash-library"/>
+		</Unit>
+		<Unit filename="/home/ivan/code/Manalyze/external/hash-library/hashes.cpp">
+			<Option target="hash-library"/>
+		</Unit>
+		<Unit filename="/home/ivan/code/Manalyze/external/hash-library/hashes.h">
+			<Option target="hash-library"/>
+		</Unit>
+		<Unit filename="/home/ivan/code/Manalyze/external/hash-library/keccak.cpp">
+			<Option target="hash-library"/>
+		</Unit>
+		<Unit filename="/home/ivan/code/Manalyze/external/hash-library/keccak.h">
+			<Option target="hash-library"/>
+		</Unit>
+		<Unit filename="/home/ivan/code/Manalyze/external/hash-library/md5.cpp">
+			<Option target="hash-library"/>
+		</Unit>
+		<Unit filename="/home/ivan/code/Manalyze/external/hash-library/md5.h">
+			<Option target="hash-library"/>
+		</Unit>
+		<Unit filename="/home/ivan/code/Manalyze/external/hash-library/sha1.cpp">
+			<Option target="hash-library"/>
+		</Unit>
+		<Unit filename="/home/ivan/code/Manalyze/external/hash-library/sha1.h">
+			<Option target="hash-library"/>
+		</Unit>
+		<Unit filename="/home/ivan/code/Manalyze/external/hash-library/sha256.cpp">
+			<Option target="hash-library"/>
+		</Unit>
+		<Unit filename="/home/ivan/code/Manalyze/external/hash-library/sha256.h">
+			<Option target="hash-library"/>
+		</Unit>
+		<Unit filename="/home/ivan/code/Manalyze/external/hash-library/sha3.cpp">
+			<Option target="hash-library"/>
+		</Unit>
+		<Unit filename="/home/ivan/code/Manalyze/external/hash-library/sha3.h">
+			<Option target="hash-library"/>
+		</Unit>
+		<Unit filename="/home/ivan/code/Manalyze/external/hash-library/sha512.cpp">
+			<Option target="hash-library"/>
+		</Unit>
+		<Unit filename="/home/ivan/code/Manalyze/external/hash-library/sha512.h">
+			<Option target="hash-library"/>
+		</Unit>
+		<Unit filename="/home/ivan/code/Manalyze/external/hash-library/ssdeep.cpp">
+			<Option target="hash-library"/>
+		</Unit>
+		<Unit filename="/home/ivan/code/Manalyze/external/hash-library/ssdeep.h">
+			<Option target="hash-library"/>
+		</Unit>
+		<Unit filename="/home/ivan/code/Manalyze/external/hash-library/tests/tests.cpp">
+			<Option target="hash-library-test"/>
+		</Unit>
+		<Unit filename="/home/ivan/code/Manalyze/external/hash-library/utils.cpp">
+			<Option target="hash-library"/>
+		</Unit>
+		<Unit filename="/home/ivan/code/Manalyze/external/hash-library/utils.h">
+			<Option target="hash-library"/>
+		</Unit>
+		<Unit filename="/home/ivan/code/Manalyze/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/home/ivan/code/Manalyze/external/hash-library/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\external\hash-library\"/>
+		</Unit>
+		<Unit filename="/home/ivan/code/Manalyze/external/yara/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\external\yara\"/>
+		</Unit>
+		<Unit filename="/home/ivan/code/Manalyze/test/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\test\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
