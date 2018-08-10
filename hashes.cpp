@@ -56,7 +56,6 @@ pHash create_hash(const std::string& oid)
 	else if (oid == "2.16.840.1.101.3.4.2.8") {
 		return boost::make_shared<SHA3>();
 	}
-
 	return boost::shared_ptr<Hash>();  // Unknown OID.
 }
 

@@ -5,6 +5,10 @@
 // SHA512 class for interface compatibility with the rest of the library
 // ----------------------------------------------------------------------------
 
+SHA512::SHA512() {
+    reset();
+}
+
 void SHA512::reset()
 {
     memset(_state.buf, 0, sizeof(_state.buf));

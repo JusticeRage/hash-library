@@ -22,11 +22,9 @@ void sha_done(sha512_state& md, void* out);
 class SHA512 : public Hash
 {
 public:
-    /// add arbitrary number of bytes
+    SHA512();
     void add(const void* data, size_t numBytes) override;
-    /// return latest hash
     std::string getHash() override;
-    /// restart
     void reset() override;
 
 private:
