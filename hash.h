@@ -17,7 +17,7 @@
 class Hash
 {
 public:
-  virtual ~Hash() = default;
+  virtual ~Hash() {};
 
   /// compute hash of a memory block
   virtual std::string operator()(const void* data, size_t numBytes);

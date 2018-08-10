@@ -274,8 +274,6 @@ std::string SHA1::getHash()
   getHash(rawHash);
 
   // convert to hex string
-  std::string result;
-  result.reserve(2 * HashBytes);
   return hexlify(rawHash, HashBytes);
 }
 

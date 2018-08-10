@@ -6,8 +6,9 @@
 
 #pragma once
 
-#include "hash.h"
 #include <string>
+#include "hash.h"
+#include "utils.h"
 
 // define fixed size integer types
 #ifdef _MSC_VER

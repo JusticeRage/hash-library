@@ -327,16 +327,7 @@ std::string MD5::getHash()
   getHash(rawHash);
 
   // convert to hex string
-  std::string result;
-  result.reserve(2 * HashBytes);
-  for (int i = 0; i < HashBytes; i++)
-  {
-    static const char dec2hex[16+1] = "0123456789abcdef";
-    result += dec2hex[(rawHash[i] >> 4) & 15];
-    result += dec2hex[ rawHash[i]       & 15];
-  }
-
-  return result;
+  return hexlify(rawHash, HashBytes);
 }
 
 
