@@ -1,7 +1,7 @@
 cmake_minimum_required (VERSION 2.6)
 project (hash-library)
 
-add_library(hash-library SHARED hash.cpp crc32.cpp keccak.cpp md5.cpp sha1.cpp sha256.cpp sha3.cpp sha512.cpp fuzzy.cpp edit_dist.cpp ssdeep.cpp hashes.cpp bitcoin.cpp utils.cpp)
+add_library(hash-library SHARED hash.cpp crc32.cpp keccak.cpp md5.cpp sha1.cpp sha256.cpp sha3.cpp sha512.cpp fuzzy.cpp edit_dist.cpp ssdeep.cpp hashes.cpp cryptocurrency.cpp utils.cpp base58.cpp)
 if (WIN32)
             set (CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -MTd")
             set (CMAKE_CXX_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -MTd")

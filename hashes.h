@@ -32,6 +32,7 @@
 #include "hash-library/sha256.h"
 #include "hash-library/sha512.h"
 #include "hash-library/sha3.h"
+#include "hash-library/keccak.h"
 
 #if defined BOOST_WINDOWS_API && !defined HASHLIB_API
 	#ifdef HASHLIB_EXPORT
@@ -114,5 +115,6 @@ extern HASHLIB_API const std::vector<pHash> ALL_DIGESTS;
 #define ALL_DIGESTS_SHA256	2
 #define ALL_DIGESTS_SHA512	3
 #define ALL_DIGESTS_SHA3	4
+#define ALL_DIGESTS_KECCAK	5
 
 } // !namespace hash

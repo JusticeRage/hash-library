@@ -29,3 +29,27 @@ std::string hexlify(const boost::uint8_t* data, size_t len)
     }
     return result;
 }
+
+unsigned char ascii_to_value(char c)
+{
+    if ((c >= '0') && (c <= '9')) {
+        return c - '0';
+    }
+    if ((c >= 'a') && (c <= 'f')) {
+        return c - 'a' + 10;
+    }
+    else return 0;
+}
+
+std::vector<unsigned char> unhexlify(const std::string& input)
+{
+    if (input.empty()) {
+        return std::vector<unsigned char>();
+    }
+    std::vector<unsigned char> res(input.size() / 2);
+    for (int i = 0 ; i < input.size() / 2 ; i++)
+    {
+        res[i] = (ascii_to_value(input[2*i]) << 4) + ascii_to_value(input[2*i + 1]);
+    }
+    return res;
+}

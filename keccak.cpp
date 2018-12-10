@@ -235,6 +235,14 @@ void Keccak::processBuffer()
   processBlock(m_buffer);
 }
 
+void Keccak::getHash(unsigned char buffer[32])
+{
+  // TODO: Implement this properly.
+  auto res = unhexlify(getHash());
+  for (int i = 0 ; i < 32 ; ++i) {
+    buffer[i] = res[i];
+  }
+}
 
 /// return latest hash as 16 hex characters
 std::string Keccak::getHash()

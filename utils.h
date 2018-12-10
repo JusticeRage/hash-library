@@ -18,6 +18,7 @@
 #pragma once
 
 #include <string>
+#include <vector>
 #include <boost/cstdint.hpp>
 
 /**
@@ -27,3 +28,7 @@
  * @return An hexadecimal representation of the input.
  */
 std::string hexlify(const boost::uint8_t* data, size_t len);
+
+// ----------------------------------------------------------------------------
+
+std::vector<unsigned char> unhexlify(const std::string& input);

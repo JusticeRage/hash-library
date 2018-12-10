@@ -24,7 +24,8 @@ const std::vector<pHash> ALL_DIGESTS = boost::assign::list_of
 		(boost::static_pointer_cast<Hash>(boost::make_shared<SHA1>()))
 		(boost::static_pointer_cast<Hash>(boost::make_shared<SHA256>()))
 		(boost::static_pointer_cast<Hash>(boost::make_shared<SHA512>()))
-		(boost::static_pointer_cast<Hash>(boost::make_shared<SHA3>()));
+		(boost::static_pointer_cast<Hash>(boost::make_shared<SHA3>()))
+		(boost::static_pointer_cast<Hash>(boost::make_shared<Keccak>()));
 
 // ----------------------------------------------------------------------------
 

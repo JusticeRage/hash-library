@@ -7,6 +7,7 @@
 #pragma once
 
 #include "hash.h"
+#include "utils.h"
 #include <string>
 
 // define fixed size integer types
@@ -54,6 +55,8 @@ public:
 
   /// return latest hash as hex characters
   std::string getHash() override;
+  /// return latest hash as bytes
+  void getHash(unsigned char buffer[32]);
 
   /// restart
   void reset() override;

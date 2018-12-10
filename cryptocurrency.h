@@ -19,11 +19,10 @@ along with Manalyze.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <string>
 #include <vector>
-#include <boost/cstdint.hpp>
 #include <boost/system/api_config.hpp>
-#include <boost/multiprecision/cpp_int.hpp>
 
-#include <hash-library/sha256.h>
+#include "hash-library/sha256.h"
+#include "hash-library/base58.h"
 
 #if defined BOOST_WINDOWS_API && !defined HASHLIB_API
 	#ifdef HASHLIB_EXPORT
@@ -46,8 +45,20 @@ namespace hash
  *	
  *	@param	address The address to test.
  *	
- *	@return	True if the input string a BTC address.
+ *	@return	True if the input string is a BTC address.
  */
 HASHLIB_API bool test_btc_address(const std::string& address);
+
+/**
+ *	@brief	Verifies that the input string is a valid monero address.
+ *
+ *	The input string is expected to be "clean" (i.e. no trailing spaces,
+ *	was already matched by a regular expression, etc.).
+ *
+ *	@param	address The address to test.
+ *
+ *	@return	True if the input string is an XMR address.
+ */
+HASHLIB_API bool test_xmr_address(const std::string& address);
 
 }

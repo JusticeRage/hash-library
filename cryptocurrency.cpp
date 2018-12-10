@@ -15,24 +15,16 @@ You should have received a copy of the GNU General Public License
 along with Manalyze.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "bitcoin.h"
+#include "cryptocurrency.h"
+#include "keccak.h"
 
 namespace hash {
 
 bool test_btc_address(const std::string& address)
 {
-	std::string base58 = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz";
-	std::vector<boost::uint8_t> data(25);
-	boost::multiprecision::cpp_int big_int = 0;
-
-	// Decode base58 data.
-	for (char c : address) {
-		big_int = big_int * 58 + base58.find_first_of(c);
-	}
-	for (int i = 24; i >= 0; --i)
-	{
-		// Safe because of the & 0xFF.
-		data[24 - i] = boost::multiprecision::cpp_int((big_int >> i * 8) & 0xFF).convert_to<boost::uint8_t>();
+	auto data = btc::base58_decode(address);
+	if (data.size() < 25) {
+	    return false;
 	}
 
 	// Compute the checksum.
@@ -47,6 +39,26 @@ bool test_btc_address(const std::string& address)
 
 	// Compare the checksums (4 bytes)
 	return memcmp(sha_result, &data[21], 4) == 0;
+}
+
+// ----------------------------------------------------------------------------
+
+bool test_xmr_address(const std::string& address)
+{
+	auto data = xmr::base58_decode(address);
+	if (data.size() < 69) {
+	    return false;
+	}
+
+	// Compute the checksum.
+	// A XMR addess has the following structure: [64 bytes of data][first 4 bytes of keccak(data))]
+	Keccak keccak;
+	boost::uint8_t keccac_result[32];
+    keccak.add(&data[0], 65); // The 4 last bytes contain the checksum
+    keccak.getHash(keccac_result);
+
+	// Compare the checksums (4 bytes)
+	return memcmp(keccac_result, &data[65], 4) == 0;
 }
 
 } // !namespace hash
