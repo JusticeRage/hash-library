@@ -177,6 +177,13 @@ std::vector<uint8_t> base58_decode(const std::string& enc)
     size_t full_block_count = enc.size() / full_encoded_block_size;
     size_t last_block_size = enc.size() % full_encoded_block_size;
     int last_block_decoded_size = decoded_block_sizes::instance(last_block_size);
+
+	// Manalyze BUGFIX: it seems that malformed input can cause last_block_decoded_size to be -1, which causes an OOB string 
+	// subscript later on. This check prevents this from happening, in the hopes that it's not breaking some corner-case 
+	// base58 decoding.
+	if (last_block_decoded_size < 0) {
+		return std::vector<uint8_t>(); // Invalid last block size
+	}
     if (last_block_size < 0)
         return std::vector<uint8_t>(); // Invalid enc length
     size_t data_size = full_block_count * full_block_size + last_block_decoded_size;

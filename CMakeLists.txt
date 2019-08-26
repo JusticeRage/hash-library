@@ -15,8 +15,7 @@ else()
 endif()
 
 if (Tests MATCHES [Oo][Nn])
-    add_executable(hash-library-test tests/tests.cpp)
-    target_link_libraries(hash-library-test hash-library)
+    add_executable(hash-library-test tests/tests.cpp hash.cpp crc32.cpp keccak.cpp md5.cpp sha1.cpp sha256.cpp sha3.cpp sha512.cpp fuzzy.cpp edit_dist.cpp ssdeep.cpp hashes.cpp cryptocurrency.cpp utils.cpp base58.cpp)
 endif()
 
 
