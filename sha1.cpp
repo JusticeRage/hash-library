@@ -10,6 +10,8 @@
 #ifndef _MSC_VER
 # ifdef BSD
 #  include <sys/endian.h>
+# elif defined __APPLE__
+#  include <machine/endian.h>
 # else
 #  include <endian.h>
 # endif
