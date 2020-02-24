@@ -28,5 +28,5 @@ if ("${CMAKE_SYSTEM}" MATCHES "Linux")
 			ARCHIVE DESTINATION /usr/local/lib/static)
 
     # Run ldconfig.
-	execute_process(COMMAND ldconfig)
+	install(CODE "execute_process(COMMAND ldconfig)")
 endif()
