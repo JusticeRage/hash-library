@@ -16,7 +16,7 @@ struct sha512_state
 };
 
 void sha_init(sha512_state& md);
-void sha_process(sha512_state& md, const void* in, std::uint32_t inlen);
+void sha_process(sha512_state& md, const void* in, uint32_t inlen);
 void sha_done(sha512_state& md, void* out);
 
 class SHA512 : public Hash
