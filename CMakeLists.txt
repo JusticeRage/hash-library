@@ -1,5 +1,7 @@
-cmake_minimum_required (VERSION 2.6)
-project (hash-library)
+cmake_minimum_required (VERSION 3.12)
+project (hash-library LANGUAGES CXX)
+
+include(GNUInstallDirs)
 
 add_library(hash-library SHARED hash.cpp crc32.cpp keccak.cpp md5.cpp sha1.cpp sha256.cpp sha3.cpp sha512.cpp fuzzy.cpp edit_dist.cpp ssdeep.cpp hashes.cpp cryptocurrency.cpp utils.cpp base58.cpp)
 if (WIN32)
@@ -23,10 +25,7 @@ endif()
 if ("${CMAKE_SYSTEM}" MATCHES "Linux")
 	# Copy binaries
 	install(TARGETS hash-library
-			RUNTIME DESTINATION /usr/local/bin
-			LIBRARY DESTINATION /usr/local/lib
-			ARCHIVE DESTINATION /usr/local/lib/static)
-
-    # Run ldconfig.
-	install(CODE "execute_process(COMMAND ldconfig)")
+			RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+			LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+			ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR})
 endif()
