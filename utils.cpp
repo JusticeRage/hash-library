@@ -17,7 +17,7 @@
 
 #include "utils.h"
 
-std::string hexlify(const boost::uint8_t* data, size_t len)
+std::string hexlify(const std::uint8_t* data, size_t len)
 {
     // convert to hex string
     std::string result;

@@ -19,18 +19,16 @@ along with Manalyze.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <string>
 #include <vector>
-#include <boost/system/api_config.hpp>
-
 #include "hash-library/sha256.h"
 #include "hash-library/base58.h"
 
-#if defined BOOST_WINDOWS_API && !defined HASHLIB_API
+#if defined _WIN32 && !defined HASHLIB_API
 	#ifdef HASHLIB_EXPORT
 		#define HASHLIB_API    __declspec(dllexport)
 	#else
 		#define HASHLIB_API    __declspec(dllimport)
 	#endif
-#elif !defined BOOST_WINDOWS_API && !defined HASHLIB_API
+#elif !defined _WIN32 && !defined HASHLIB_API
 	#define HASHLIB_API
 #endif
 

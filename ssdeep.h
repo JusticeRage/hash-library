@@ -19,27 +19,24 @@
 
 #include <iostream>
 #include <vector>
-#include <boost/shared_array.hpp>
-#include <boost/make_shared.hpp>
-#include <boost/cstdint.hpp>
-#include <boost/system/api_config.hpp>
-
+#include <memory>
+#include <cstdint>
 #include "hash.h"
 #include "fuzzy.h"
 
-#if defined BOOST_WINDOWS_API && !defined HASHLIB_API
+#if defined _WIN32 && !defined HASHLIB_API
 	#ifdef HASHLIB_EXPORT
 		#define HASHLIB_API    __declspec(dllexport)
 	#else
 		#define HASHLIB_API    __declspec(dllimport)
 	#endif
-#elif !defined BOOST_WINDOWS_API && !defined HASHLIB_API
+#elif !defined _WIN32 && !defined HASHLIB_API
 	#define HASHLIB_API
 #endif
 
 namespace ssdeep {
 
-typedef boost::shared_ptr<std::string> pString;
+typedef std::shared_ptr<std::string> pString;
 
 /**
 *	@brief	Calculates the SSDeep hash of a file based on its name.
@@ -53,10 +50,10 @@ HASHLIB_API pString hash_file(const std::string& filename);
 /**
 *	@brief	Calculates the SSDeep hash of given bytes.
 *
-*	@param	const std::vector<boost::uint8_t>& bytes The bytes to hash.
+*	@param	const std::vector<std::uint8_t>& bytes The bytes to hash.
 *
 *	@return	A shared string containing the SSDeep hash. Empty if an error occurs.
 */
-HASHLIB_API pString hash_buffer(const std::vector<boost::uint8_t>& bytes);
+HASHLIB_API pString hash_buffer(const std::vector<std::uint8_t>& bytes);
 
 }

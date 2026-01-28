@@ -2,16 +2,16 @@
 #pragma once
 
 #include <cstring>
-#include <boost/cstdint.hpp>
+#include <cstdint>
 
 #include "hash.h"
 #include "utils.h"
 
 struct sha512_state
 {
-    boost::uint64_t length;
-    boost::uint64_t state[8];
-    boost::uint32_t curlen;
+    std::uint64_t length;
+    std::uint64_t state[8];
+    std::uint32_t curlen;
     unsigned char buf[128];
 };
 

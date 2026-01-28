@@ -24,7 +24,7 @@ void SHA512::add(const void* data, size_t numBytes)
 
 std::string SHA512::getHash()
 {
-    boost::uint8_t out[128] = {0};
+    std::uint8_t out[128] = {0};
     sha_done(_state, out);
     return hexlify(out, 64);
 }
@@ -33,8 +33,8 @@ std::string SHA512::getHash()
 // Original code below
 // ----------------------------------------------------------------------------
 
-typedef boost::uint32_t u32;
-typedef boost::uint64_t u64;
+typedef std::uint32_t u32;
+typedef std::uint64_t u64;
 
 static const u64 K[80] =
     {

@@ -40,8 +40,7 @@
 #include <string>
 #include <vector>
 
-#include <boost/cstdint.hpp>
-#include <boost/multiprecision/cpp_int.hpp>
+#include <cstdint>
 
 #define SWAP64BE(x) ((((uint64_t) (x) & 0x00000000000000ff) << 56) | \
   (((uint64_t) (x) & 0x000000000000ff00) << 40) | \

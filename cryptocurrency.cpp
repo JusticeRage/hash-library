@@ -30,7 +30,7 @@ bool test_btc_address(const std::string& address)
 	// Compute the checksum.
 	// A BTC addess has the following structure: [21 bytes of data][first 4 bytes of sha256(sha256(data))]
 	SHA256 sha256;
-	boost::uint8_t sha_result[32];
+	std::uint8_t sha_result[32];
 	sha256.add(&data[0], 21); // The 4 last bytes contain the checksum
 	sha256.getHash(sha_result);
 	sha256.reset();
@@ -53,7 +53,7 @@ bool test_xmr_address(const std::string& address)
 	// Compute the checksum.
 	// A XMR addess has the following structure: [64 bytes of data][first 4 bytes of keccak(data))]
 	Keccak keccak;
-	boost::uint8_t keccac_result[32];
+	std::uint8_t keccac_result[32];
     keccak.add(&data[0], 65); // The 4 last bytes contain the checksum
     keccak.getHash(keccac_result);
 

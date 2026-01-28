@@ -20,12 +20,8 @@
 #include <vector>
 #include <stdio.h>
 
-#include <boost/make_shared.hpp>
-#include <boost/shared_array.hpp>
-#include <boost/assign.hpp>
-#include <boost/cstdint.hpp>
-#include <boost/system/api_config.hpp>
-
+#include <memory>
+#include <cstdint>
 #include "hash-library/hash.h"
 #include "hash-library/md5.h"
 #include "hash-library/sha1.h"
@@ -34,32 +30,32 @@
 #include "hash-library/sha3.h"
 #include "hash-library/keccak.h"
 
-#if defined BOOST_WINDOWS_API && !defined HASHLIB_API
+#if defined _WIN32 && !defined HASHLIB_API
 	#ifdef HASHLIB_EXPORT
 		#define HASHLIB_API    __declspec(dllexport)
 	#else
 		#define HASHLIB_API    __declspec(dllimport)
 	#endif
-#elif !defined BOOST_WINDOWS_API && !defined HASHLIB_API
+#elif !defined _WIN32 && !defined HASHLIB_API
 	#define HASHLIB_API
 #endif
 
 namespace hash {
 
-typedef boost::shared_ptr<Hash> pHash;
-typedef boost::shared_ptr<std::string> pString;
-typedef boost::shared_ptr<std::vector<std::string> > shared_strings;
-typedef boost::shared_ptr<const std::vector<std::string> > const_shared_strings;
+typedef std::shared_ptr<Hash> pHash;
+typedef std::shared_ptr<std::string> pString;
+typedef std::shared_ptr<std::vector<std::string> > shared_strings;
+typedef std::shared_ptr<const std::vector<std::string> > const_shared_strings;
 
 /**
  *	@brief	Computes the hash of a buffer.
  *
  *	@param	Digest& digest The digest to use.
- *	@param	const std::vector<boost::uint8_t>& bytes The buffer to hash.
+ *	@param	const std::vector<std::uint8_t>& bytes The buffer to hash.
  *
  *	@return	A shared string containing the hash value. May be empty if an error occurred.
  */
-HASHLIB_API pString hash_bytes(Hash& digest, const std::vector<boost::uint8_t>& bytes);
+HASHLIB_API pString hash_bytes(Hash& digest, const std::vector<std::uint8_t>& bytes);
 
 /**
  *	@brief	Computes the hash of a file.
@@ -92,12 +88,12 @@ HASHLIB_API const_shared_strings hash_file(const std::vector<pHash>& digests, co
  *	@param	const std::vector<pDigest>& digests A list of digests to use.
  *			hash::ALL_DIGESTS is a suitable pre-initialized vector given for convenience.
  *
- *	@param	const std::vector<boost::uint8_t>& bytes The buffer to hash.
+ *	@param	const std::vector<std::uint8_t>& bytes The buffer to hash.
  *
  *	@return	A shared vector containing all the computed hashes, in the same order as the input digests.
  *			If an error occurs for any digest, the return value's size is set to 0.
  */
-HASHLIB_API const_shared_strings hash_bytes(const std::vector<pHash>& digests, const std::vector<boost::uint8_t>& bytes);
+HASHLIB_API const_shared_strings hash_bytes(const std::vector<pHash>& digests, const std::vector<std::uint8_t>& bytes);
 
 /**
  * Creates a Hash object based on an algorithm's OID

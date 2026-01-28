@@ -19,7 +19,7 @@
 
 #include <string>
 #include <vector>
-#include <boost/cstdint.hpp>
+#include <cstdint>
 
 /**
  * Converts a byte array into an hexadecimal string.
@@ -27,7 +27,7 @@
  * @param len The size of the data.
  * @return An hexadecimal representation of the input.
  */
-std::string hexlify(const boost::uint8_t* data, size_t len);
+std::string hexlify(const std::uint8_t* data, size_t len);
 
 // ----------------------------------------------------------------------------
 

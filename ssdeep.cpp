@@ -17,14 +17,16 @@
 
 #include "ssdeep.h"
 
+#include <array>
+
 namespace ssdeep {
 
 pString hash_file(const std::string& filename)
 {
-	boost::shared_array<char> res = boost::shared_array<char>(new char[FUZZY_MAX_RESULT]);
+	std::array<char, FUZZY_MAX_RESULT> res;
 	FILE* f = fopen(filename.c_str(), "rb");
 
-	if (f == nullptr || fuzzy_hash_file(f, res.get()))
+	if (f == nullptr || fuzzy_hash_file(f, res.data()))
 	{
 		if (f != nullptr) {
 			fclose(f);
@@ -32,20 +34,20 @@ pString hash_file(const std::string& filename)
 		return pString();
 	}
 	fclose(f);
-	return boost::make_shared<std::string>(res.get());
+	return std::make_shared<std::string>(res.data());
 }
 
-pString hash_buffer(const std::vector<boost::uint8_t>& bytes)
+pString hash_buffer(const std::vector<std::uint8_t>& bytes)
 {
 	if (bytes.size() == 0) {
-		return boost::shared_ptr<std::string>();
+		return std::shared_ptr<std::string>();
 	}
 
-	boost::shared_array<char> res = boost::shared_array<char>(new char[FUZZY_MAX_RESULT]);
-	if (fuzzy_hash_buf(&bytes[0], bytes.size(), res.get())) {
+	std::array<char, FUZZY_MAX_RESULT> res;
+	if (fuzzy_hash_buf(&bytes[0], bytes.size(), res.data())) {
 		return pString();
 	}
-	return boost::make_shared<std::string>(res.get());
+	return std::make_shared<std::string>(res.data());
 }
 
 }

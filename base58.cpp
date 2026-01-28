@@ -33,23 +33,56 @@
 
 #include "base58.h"
 
+#include <algorithm>
+
 namespace btc {
 
 std::vector<uint8_t> base58_decode(const std::string& enc)
 {
     std::string base58 = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz";
-    std::vector<boost::uint8_t> data(25);
-    boost::multiprecision::cpp_int big_int = 0;
+    std::vector<std::uint8_t> data(25, 0);
 
-    // Decode base58 data.
-    for (char c : enc) {
-        big_int = big_int * 58 + base58.find_first_of(c);
-    }
-    for (int i = 24; i >= 0; --i)
+    std::vector<std::uint8_t> b256;
+    b256.reserve(enc.size());
+
+    for (char c : enc)
     {
-        // Safe because of the & 0xFF.
-        data[24 - i] = boost::multiprecision::cpp_int((big_int >> i * 8) & 0xFF).convert_to<boost::uint8_t>();
+        const auto pos = base58.find(c);
+        if (pos == std::string::npos) {
+            return data;
+        }
+        int carry = static_cast<int>(pos);
+        for (int i = static_cast<int>(b256.size()) - 1; i >= 0; --i)
+        {
+            carry += 58 * b256[static_cast<size_t>(i)];
+            b256[static_cast<size_t>(i)] = static_cast<std::uint8_t>(carry & 0xFF);
+            carry >>= 8;
+        }
+        while (carry > 0)
+        {
+            b256.insert(b256.begin(), static_cast<std::uint8_t>(carry & 0xFF));
+            carry >>= 8;
+        }
     }
+
+    size_t leading_zeros = 0;
+    for (char c : enc)
+    {
+        if (c == '1') {
+            ++leading_zeros;
+        }
+        else {
+            break;
+        }
+    }
+    b256.insert(b256.begin(), leading_zeros, 0x00);
+
+    if (b256.size() > data.size()) {
+        b256.erase(b256.begin(), b256.end() - data.size());
+    }
+    const size_t copy_len = std::min(b256.size(), data.size());
+    std::copy(b256.end() - copy_len, b256.end(), data.end() - copy_len);
+
     return data;
 }
 
