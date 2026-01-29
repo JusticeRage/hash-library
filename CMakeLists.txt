@@ -18,6 +18,9 @@ endif()
 
 if (Tests MATCHES [Oo][Nn])
     add_executable(hash-library-test tests/tests.cpp hash.cpp crc32.cpp keccak.cpp md5.cpp sha1.cpp sha256.cpp sha3.cpp sha512.cpp fuzzy.cpp edit_dist.cpp ssdeep.cpp hashes.cpp cryptocurrency.cpp utils.cpp base58.cpp)
+    if (WIN32)
+        target_compile_definitions(hash-library-test PRIVATE HASHLIB_EXPORT)
+    endif()
 endif()
 
 
